@@ -69,9 +69,21 @@ func _check_collisions():
 				break
 
 func _apply_ball_effect(ball, brick):
-	# TODO: add special behavior per ball_type here (plasma AOE, sniper targeting, scatter, poison, cannon)
-	_award_hit_gold(brick, ball.damage)
-	brick.take_damage(ball.damage)
+	if ball.ball_type == "plasma":
+		var aoe_range = GameData.get_ball_range("plasma")
+		_award_hit_gold(brick,ball.damage)
+		brick.take_damage(ball.damage)
+		for b in brick_grid.get_bricks().duplicate():
+			if not is_instance_valid(b) or b == brick:
+				continue
+			var dx = abs(b.grid_x - brick.grid_x)
+			var dy = abs(b.grid_y - brick.grid_y)
+			if dx <= aoe_range and dy <= aoe_range:
+				_award_hit_gold(b, ball.damage)
+				b.take_damage(ball.damage)
+	else:
+		_award_hit_gold(brick, ball.damage)
+		brick.take_damage(ball.damage)
 
 func _award_hit_gold(brick, damage: int):
 	var gold = mini(damage, brick.hp)
@@ -187,6 +199,8 @@ func _spawn_ball(type: String):
 		randf_range(play_bounds.position.x + 50, play_bounds.end.x - 50),
 		randf_range(play_bounds.size.y * 0.6, play_bounds.size.y * 0.85)
 	)
+	if type == "sniper":
+		b.brick_grid = brick_grid
 
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:

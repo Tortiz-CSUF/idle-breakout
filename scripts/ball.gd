@@ -10,7 +10,10 @@ var color: Color = Color.WHITE
 var bounds: Rect2 = Rect2(0, 0, 880, 720)
 var _hit_cooldown: float = 0.0
 
-# TODO: add fields here for special ball behaviors (sniper target, fragment lifetime, etc)
+var brick_grid: Node2D = null
+var _sniper_targeting: bool = false
+
+
 
 signal hit_brick(ball, brick)
 
@@ -31,26 +34,52 @@ func _init_velocity():
 	velocity = Vector2.from_angle(angle) * speed
 
 func _process(delta):
-	# TODO: add per-type movement logic here (sniper steering, fragment expiry, etc)
+	
 	if _hit_cooldown > 0:
 		_hit_cooldown -= delta
 	position += velocity * delta
 	_bounce_walls()
 
 func _bounce_walls():
+	var bounced = false
+	
 	if position.x - radius < bounds.position.x:
 		position.x = bounds.position.x + radius
 		velocity.x = abs(velocity.x)
+		bounced = true
 	elif position.x + radius > bounds.end.x:
 		position.x = bounds.end.x - radius
 		velocity.x = -abs(velocity.x)
-
+		bounced = true
 	if position.y - radius < bounds.position.y:
 		position.y = bounds.position.y + radius
 		velocity.y = abs(velocity.y)
+		bounced = true
 	elif position.y + radius > bounds.end.y:
 		position.y = bounds.end.y - radius
 		velocity.y = -abs(velocity.y)
+		bounced = true
+		
+	if bounced and ball_type == "sniper" and brick_grid:
+		_sniper_target_closest()
+		
+func _sniper_target_closest():
+	var bricks = brick_grid.get_bricks()
+	if bricks.is_empty():
+		return
+	var closest: Node2D = null
+	var closest_dist := INF
+	for b in bricks:
+		if is_instance_valid(b):
+			var dist = global_position.distance_to(b.global_position)
+			if dist < closest_dist:
+				closest_dist = dist
+				closest = b
+	if closest:
+		var direction = (closest.global_position - global_position).normalized()
+		velocity = direction * speed
+		_sniper_targeting = true
+
 
 func check_brick_collision(brick: Node2D) -> bool:
 	if _hit_cooldown > 0:

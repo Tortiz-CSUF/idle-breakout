@@ -1,17 +1,13 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://cr31n2ixphxf7"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1"]
-[ext_resource type="Script" path="res://scripts/brick_grid.gd" id="2"]
-[ext_resource type="Script" path="res://scripts/shop_panel.gd" id="3"]
+[ext_resource type="Script" uid="uid://dueg5sajr34r" path="res://scripts/game.gd" id="1"]
+[ext_resource type="Script" uid="uid://dsy62ke15qknf" path="res://scripts/brick_grid.gd" id="2"]
+[ext_resource type="Script" uid="uid://5pqvso0amvyr" path="res://scripts/shop_panel.gd" id="3"]
 
 [sub_resource type="StyleBoxFlat" id="PlayAreaStyle"]
 bg_color = Color(0.92, 0.9, 0.82, 1)
 border_width_right = 2
 border_color = Color(0.7, 0.68, 0.6, 1)
-corner_radius_top_left = 0
-corner_radius_top_right = 0
-corner_radius_bottom_right = 0
-corner_radius_bottom_left = 0
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -27,15 +23,15 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.18, 0.18, 0.22, 1)
 
 [node name="PlayArea" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 880
-offset_bottom = 720
+offset_right = 880.0
+offset_bottom = 720.0
 theme_override_styles/panel = SubResource("PlayAreaStyle")
 
 [node name="BrickGrid" type="Node2D" parent="PlayArea"]
@@ -46,9 +42,9 @@ script = ExtResource("2")
 [node name="ShopScroll" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-offset_left = 890
-offset_right = 1280
-offset_bottom = 720
+offset_left = 890.0
+offset_right = 1280.0
+offset_bottom = 720.0
 
 [node name="ShopPanel" type="VBoxContainer" parent="ShopScroll"]
 layout_mode = 2
