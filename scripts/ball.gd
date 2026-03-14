@@ -16,6 +16,8 @@ var _sniper_targeting: bool = false
 
 
 signal hit_brick(ball, brick)
+# new signal for wall. emit added to _bounce_walls() after sniper check
+signal hit_wall(ball)
 
 func _ready():
 	_init_velocity()
@@ -62,6 +64,9 @@ func _bounce_walls():
 		
 	if bounced and ball_type == "sniper" and brick_grid:
 		_sniper_target_closest()
+		
+		if bounced and ball_type == "scatter":
+			emit_signal("hit_wall", self)
 		
 func _sniper_target_closest():
 	var bricks = brick_grid.get_bricks()

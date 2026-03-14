@@ -36,6 +36,7 @@ var power_levels := {
 
 var range_levels := {
 	"plasma": 0,
+	"scatter": 0,
 }
 
 # base stats
@@ -59,6 +60,7 @@ var _base_speed := {
 
 var _base_range := {
 	"plasma": 1,
+	"scatter": 3,
 }
 
 # pixels per second = stat * 40
@@ -105,6 +107,7 @@ func get_speed_upgrade_cost(type: String) -> int:
 func get_range_upgrade_cost(type: String) -> int:
 	var base := {
 		"plasma": 250,
+		"scatter": 500,
 	}
 	if not type in base:
 		return 0

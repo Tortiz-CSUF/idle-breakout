@@ -1,7 +1,7 @@
 extends VBoxContainer
 
 const BALL_TYPES = ["basic", "plasma", "sniper", "scatter", "poison", "cannon"]
-const IMPLEMENTED = ["basic", "plasma","sniper"]
+const IMPLEMENTED = ["basic", "plasma","sniper", "scatter", "cannon"]
 const BALL_LABELS = {
 	"basic": "BASIC BALL",
 	"plasma": "PLASMA BALL",
@@ -306,7 +306,9 @@ func refresh():
 			var cur = GameData.get_ball_range_stat(type)
 			var nxt = GameData.get_ball_range_stat_next(type)
 			var cost = GameData.get_range_upgrade_cost(type)
-			range_btn.text = "Range\n" + str(cur) + " >> " + str(nxt) + "\n$" + GameData.format_number(cost)
+			# Label changed to "Balls"
+			var range_label = "Balls" if type == "scatter" else "Range(AOE)"
+			range_btn.text = range_label + "\n" + str(cur) + " >> " + str(nxt) + "\n$" + GameData.format_number(cost)
 			range_btn.disabled = not available or count == 0 or GameData.gold < cost
 
 		var buy_btn = entry.find_child("BuyBtn", true, false)
