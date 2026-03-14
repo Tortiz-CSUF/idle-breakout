@@ -94,7 +94,13 @@ func check_brick_collision(brick: Node2D) -> bool:
 	var expanded = brick_rect.grow(radius)
 	if not expanded.has_point(global_position):
 		return false
-
+		
+	# cannon penetrates through bricks it can destroy
+	if ball_type == "cannon" and damage >= brick.hp:
+		_hit_cooldown = 0.05
+		emit_signal("hit_brick", self, brick)
+		return true
+		
 	# figure out which side we hit for bounce
 	var brick_center = brick_rect.get_center()
 	var diff = global_position - brick_center
