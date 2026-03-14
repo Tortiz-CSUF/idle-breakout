@@ -1,4 +1,2 @@
 res://scenes/game.tscn
-res://scripts/shop_panel.gd
-res://scripts/game_data.gd
-res://scripts/ball.gd
+res://scripts/scatter_projectile.gd
