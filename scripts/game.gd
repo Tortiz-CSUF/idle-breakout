@@ -67,6 +67,21 @@ func _check_collisions():
 			if ball.check_brick_collision(brick):
 				_apply_ball_effect(ball, brick)
 				break
+				
+	# scatter porjectile collision
+	for proj in get_tree().get_nodes_in_group("scatter_projectiles"):
+		if not is_instance_valid(proj):
+			continue
+		for brick in active_bricks:
+			if not is_instance_valid(brick):
+				continue
+			if proj.check_brick_collision(brick):
+				_award_hit_gold(brick, proj.damage)
+				brick.take_damage(proj.damage)
+				proj.queue_free()
+				break
+				
+				
 
 func _apply_ball_effect(ball, brick):
 	if ball.ball_type == "plasma":
@@ -186,6 +201,21 @@ func _on_prestige():
 	shop.refresh()
 	GameData.save_game()
 
+
+func _on_scatter_wall_hit(ball):
+	var count = GameData.get_ball_range_stat("scatter")
+	var proj_script = load("res://scripts/scatter_projectile.gd")
+	for i in count:
+		var p = Node2D.new()
+		p.set_script(proj_script)
+		p.damage = GameData.get_ball_damage("scatter")
+		p.bounds = play_bounds
+		# scatter in random dir
+		var angle = randf_range(0, TAU)
+		p.velocity = Vector2.from_angle(angle) * 300.0
+		play_area.add_child(p)
+		p.position = ball.position
+		
 func _spawn_owned_balls():
 	for type in GameData.ball_counts:
 		for i in GameData.ball_counts[type]:
@@ -201,7 +231,9 @@ func _spawn_ball(type: String):
 	)
 	if type == "sniper":
 		b.brick_grid = brick_grid
-
+		if type == "scatter":
+			b.hit_wall.connect(_on_scatter_wall_hit)
+	
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		GameData.save_game()

@@ -8,6 +8,8 @@ var color: Color = Color(0.3, 1.0, 0.4, 0.8)
 var bounds: Rect2 = Rect2(0, 0, 880, 720)
 var lifetime: float = 5.0 
 
+func _ready():
+	add_to_group("scatter_projectiles")
 
 func _process(delta: float) -> void:
 	lifetime -= delta
