@@ -41,6 +41,7 @@ func build_level(lvl: int):
 			var gold = max(1, int(ceil(gold_val * cell)))
 			b.setup(col, row, hp, gold)
 			b.brick_destroyed.connect(_on_brick_destroyed)
+			b.poison_tick_gold.connect(_on_poison_gold)
 			bricks.append(b)
 
 func _generate_layout(lvl: int) -> Array:

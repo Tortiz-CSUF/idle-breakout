@@ -65,8 +65,17 @@ func _process(delta):
 		if poison_accum >= 1.0:
 			var dmg = int(poison_accum)
 			poison_accum -= dmg
+			var gold = mini(dmg, hp)
+			if gold > 0:
+				emit_signal("poison_gold_tick", gold)
 			take_damage(dmg)
-
+			
+		if poison_timer <= 0:
+			poison_timer = 0.0
+			poison_dps = 0.0
+			poison_accum = 0.0
+			queue_redraw()
+			
 func take_damage(amount: int) -> bool:
 	hp -= amount
 	_update_label()
