@@ -67,7 +67,7 @@ func _process(delta):
 			poison_accum -= dmg
 			var gold = mini(dmg, hp)
 			if gold > 0:
-				emit_signal("poison_gold_tick", gold)
+				emit_signal("poison_tick_gold", gold)
 			take_damage(dmg)
 			
 		if poison_timer <= 0:
@@ -97,6 +97,9 @@ func _update_label():
 func _draw():
 	var rect = Rect2(-BRICK_W / 2.0, -BRICK_H / 2.0, BRICK_W, BRICK_H)
 	draw_rect(rect, brick_color)
+	# Purple Overlay when poisoned
+	if poison_timer > 0:
+		draw_rect(rect, Color(0.7, 0.2, 0.9, 0.4))
 	# slight white highlight on top edge, dark on bottom for depth
 	draw_line(Vector2(rect.position.x, rect.position.y), Vector2(rect.end.x, rect.position.y), Color(1, 1, 1, 0.25), 1.0)
 	draw_line(Vector2(rect.position.x, rect.end.y), Vector2(rect.end.x, rect.end.y), Color(0, 0, 0, 0.15), 1.0)

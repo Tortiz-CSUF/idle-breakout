@@ -259,3 +259,6 @@ func get_weakest_brick() -> Node2D:
 func get_bricks() -> Array:
 	bricks = bricks.filter(func(b): return is_instance_valid(b) and b.hp > 0)
 	return bricks
+	
+func _on_poison_gold(amount):
+	emit_signal("gold_earned", amount, Vector2.ZERO)
