@@ -1,7 +1,7 @@
 extends VBoxContainer
 
 const BALL_TYPES = ["basic", "plasma", "sniper", "scatter", "poison", "cannon"]
-const IMPLEMENTED = ["basic", "plasma","sniper", "scatter", "cannon"]
+const IMPLEMENTED = ["basic", "plasma","sniper", "scatter", "cannon", "poison"]
 const BALL_LABELS = {
 	"basic": "BASIC BALL",
 	"plasma": "PLASMA BALL",

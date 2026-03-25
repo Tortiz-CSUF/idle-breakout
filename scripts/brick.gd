@@ -17,6 +17,7 @@ const BRICK_PAD = 2
 @onready var label: Label = $Label
 
 signal brick_destroyed(brick)
+signal poison_tick_gold(amount)
 
 func _ready():
 	_pick_color()

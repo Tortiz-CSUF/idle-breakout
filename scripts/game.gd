@@ -96,6 +96,10 @@ func _apply_ball_effect(ball, brick):
 			if dx <= aoe_range and dy <= aoe_range:
 				_award_hit_gold(b, ball.damage)
 				b.take_damage(ball.damage)
+	elif ball.ball_type == "poison":
+		_award_hit_gold(brick, ball.damage)
+		brick.take_damage(ball.damage)
+		brick.apply_poison(float(ball.damage), 3.0)
 	else:
 		_award_hit_gold(brick, ball.damage)
 		brick.take_damage(ball.damage)
