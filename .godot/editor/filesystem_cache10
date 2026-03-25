@@ -1,11 +1,11 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1774481404
+::res://::1774482060
 icon.svg::CompressedTexture2D::413422662799840154::1773452890::1773452995::1::::<><><>0<>0<>71141675b5e6ff7c4c9b8b4969811b16<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://resources/::1773452890
-::res://scenes/::1774481369
+::res://scenes/::1774481549
 ball.tscn::PackedScene::-1::1773452890::0::1::::<><><>0<>0<><>::res://scripts/ball.gd
 brick.tscn::PackedScene::-1::1773452890::0::1::::<><><>0<>0<><>::res://scripts/brick.gd
-game.tscn::PackedScene::6025457575033369006::1774481369::0::1::::<><><>0<>0<><>::uid://dueg5sajr34r::::res://scripts/game.gd<>uid://dsy62ke15qknf::::res://scripts/brick_grid.gd<>uid://5pqvso0amvyr::::res://scripts/shop_panel.gd
+game.tscn::PackedScene::6025457575033369006::1774481549::0::1::::<><><>0<>0<><>::uid://dueg5sajr34r::::res://scripts/game.gd<>uid://dsy62ke15qknf::::res://scripts/brick_grid.gd<>uid://5pqvso0amvyr::::res://scripts/shop_panel.gd
 ::res://scripts/::1774481369
 ball.gd::GDScript::6988882971041479622::1774481369::0::1::::<>Node2D<><>0<>0<><>::
 brick.gd::GDScript::4061848887180177462::1773452890::0::1::::<>Node2D<><>0<>0<><>::
