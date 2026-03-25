@@ -1,5 +1,5 @@
 extends Control
-
+### POISON BALL INIT COMMIT
 @onready var brick_grid: Node2D = $PlayArea/BrickGrid
 @onready var ball_container: Node2D = $PlayArea/Balls
 @onready var shop: VBoxContainer = $ShopScroll/ShopPanel
@@ -201,7 +201,14 @@ func _spawn_ball(type: String):
 	)
 	if type == "sniper":
 		b.brick_grid = brick_grid
+<<<<<<< Updated upstream
 
+=======
+		
+	if type == "scatter":
+		b.hit_wall.connect(_on_scatter_wall_hit)
+	
+>>>>>>> Stashed changes
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		GameData.save_game()

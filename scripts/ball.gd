@@ -63,6 +63,12 @@ func _bounce_walls():
 	if bounced and ball_type == "sniper" and brick_grid:
 		_sniper_target_closest()
 		
+<<<<<<< Updated upstream
+=======
+	if bounced and ball_type == "scatter":
+		emit_signal("hit_wall", self)
+		
+>>>>>>> Stashed changes
 func _sniper_target_closest():
 	var bricks = brick_grid.get_bricks()
 	if bricks.is_empty():
