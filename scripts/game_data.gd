@@ -74,7 +74,7 @@ func get_ball_cost(type: String) -> int:
 		"plasma": 100,
 		"sniper": 500,
 		"scatter": 2500,
-		"poison": 10000,
+		"poison": 200,#10000,
 		"cannon": 50000,
 	}
 	var count = ball_counts.get(type, 0)

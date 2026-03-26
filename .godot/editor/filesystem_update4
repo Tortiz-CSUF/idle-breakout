@@ -3,3 +3,4 @@ res://scripts/shop_panel.gd
 res://scripts/game.gd
 res://scripts/brick.gd
 res://scripts/brick_grid.gd
+res://scripts/game_data.gd
