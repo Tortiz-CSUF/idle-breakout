@@ -99,7 +99,7 @@ func _draw():
 	draw_rect(rect, brick_color)
 	# Purple Overlay when poisoned
 	if poison_timer > 0:
-		draw_rect(rect, Color(0.7, 0.2, 0.9, 0.4))
+		draw_rect(rect, Color(0.0, 0.82, 0.275, 0.875))
 	# slight white highlight on top edge, dark on bottom for depth
 	draw_line(Vector2(rect.position.x, rect.position.y), Vector2(rect.end.x, rect.position.y), Color(1, 1, 1, 0.25), 1.0)
 	draw_line(Vector2(rect.position.x, rect.end.y), Vector2(rect.end.x, rect.end.y), Color(0, 0, 0, 0.15), 1.0)
